@@ -11,7 +11,7 @@
 
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-tools</artifactId>
-	<version>4.0.0-CR1</version>
+	<version>4.0.0-CR2</version>
 	<packaging>jar</packaging>
 
 	<name>Hibernate Tools</name>
@@ -24,9 +24,9 @@
 	</issueManagement>
 
 	<scm>
-	  <connection>scm:git:git://github.com/hibernate/hibernate-tools.git</connection>
-	  <developerConnection>scm:git:git@github.com:hibernate/hibernate-tools.git</developerConnection>
-	  <url>http://github.com/hibernate/hibernate-tools</url>
+	  <connection>scm:git:git://github.com/r0bb3n/hibernate-tools.git</connection>
+	  <developerConnection>scm:git:git@github.com:r0bb3n/hibernate-tools.git</developerConnection>
+	  <url>http://github.com/r0bb3n/hibernate-tools</url>
 	</scm>
 
 	<organization>
