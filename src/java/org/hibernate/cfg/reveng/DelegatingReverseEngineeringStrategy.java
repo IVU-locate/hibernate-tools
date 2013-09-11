@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.hibernate.mapping.ForeignKey;
+import org.hibernate.mapping.Property;
 import org.hibernate.mapping.Table;
 
 public class DelegatingReverseEngineeringStrategy implements ReverseEngineeringStrategy {
@@ -154,4 +155,27 @@ public class DelegatingReverseEngineeringStrategy implements ReverseEngineeringS
 		return delegate==null?null:delegate.foreignKeyToInverseEntityName(keyname, fromTable, fromColumnNames, referencedTable, referencedColumnNames, uniqueReference);
 	}	
 	
+	public void modifyBasicProperty(Property prop, TableIdentifier table) {
+		if(delegate != null){
+			delegate.modifyBasicProperty(prop, table);
+		}
+	}
+	
+	public void modifyPrimaryProperty(Property prop, TableIdentifier table) {
+		if(delegate != null){
+			delegate.modifyPrimaryProperty(prop, table);
+		}
+	}
+	
+	public void modifyCollectionProperty(Property prop, TableIdentifier table) {
+		if(delegate != null){
+			delegate.modifyCollectionProperty(prop, table);
+		}
+	}
+	
+	public void modifyEntityProperty(Property prop, TableIdentifier table) {
+		if(delegate != null){
+			delegate.modifyEntityProperty(prop, table);
+		}
+	}
 }

@@ -7,6 +7,7 @@ import java.util.Properties;
 import org.hibernate.cfg.reveng.dialect.MetaDataDialect;
 import org.hibernate.mapping.ForeignKey;
 import org.hibernate.mapping.MetaAttribute;
+import org.hibernate.mapping.Property;
 import org.hibernate.mapping.Table;
 
 public interface ReverseEngineeringStrategy {
@@ -196,5 +197,33 @@ public interface ReverseEngineeringStrategy {
 
 	public AssociationInfo foreignKeyToAssociationInfo(ForeignKey foreignKey);
 	public AssociationInfo foreignKeyToInverseAssociationInfo(ForeignKey foreignKey);
-		
+
+	/**
+	 * Allows customization of a property (e.g. insertable, etc.)
+	 * @param prop
+	 * @param table
+	 */
+	public void modifyBasicProperty(Property prop, TableIdentifier table);
+	
+	/**
+	 * Allows customization of a property (e.g. insertable, etc.)
+	 * @param prop
+	 * @param table
+	 */
+	public void modifyPrimaryProperty(Property prop, TableIdentifier table);
+	
+	/**
+	 * Allows customization of a property (e.g. insertable, etc.)
+	 * @param prop
+	 * @param table
+	 */
+	public void modifyCollectionProperty(Property prop, TableIdentifier table);
+	
+	/**
+	 * Allows customization of a property (e.g. insertable, etc.)
+	 * @param prop
+	 * @param table
+	 */
+	public void modifyEntityProperty(Property prop, TableIdentifier table);
 }
+

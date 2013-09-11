@@ -361,7 +361,10 @@ public class JDBCBinder {
         	value.setFetchMode(FetchMode.SELECT);
         }
 
-        return makeProperty(TableIdentifier.create( table ), propertyName, value, insert, update, value.getFetchMode()!=FetchMode.JOIN, cascade, null);
+        TableIdentifier tableIdentifier = TableIdentifier.create( table );
+		Property p = makeProperty(tableIdentifier, propertyName, value, insert, update, value.getFetchMode()!=FetchMode.JOIN, cascade, null);
+        revengStrategy.modifyCollectionProperty(p, tableIdentifier);
+        return p;
 
 	}
 
@@ -398,7 +401,10 @@ public class JDBCBinder {
         	value.setFetchMode(FetchMode.SELECT);
         }
 
-        return makeProperty(TableIdentifier.create( table ), propertyName, value, insert, update, value.getFetchMode()!=FetchMode.JOIN, cascade, null);
+        TableIdentifier tableIdentifier = TableIdentifier.create( table );
+		Property p = makeProperty(tableIdentifier, propertyName, value, insert, update, value.getFetchMode()!=FetchMode.JOIN, cascade, null);
+		revengStrategy.modifyEntityProperty(p, tableIdentifier);
+		return p;
 	}
 
 	/**
@@ -649,6 +655,7 @@ public class JDBCBinder {
 		}
 
 		Property property = makeProperty(tableIdentifier, makeUnique(rc,idPropertyname), id, true, true, false, null, null);
+		revengStrategy.modifyPrimaryProperty(property, tableIdentifier);
 		rc.setIdentifierProperty(property);
 		rc.setIdentifier(id);
 
@@ -777,7 +784,10 @@ public class JDBCBinder {
 
 		SimpleValue value = bindColumnToSimpleValue( table, column, mapping, false );
 
-		return makeProperty(TableIdentifier.create( table ), propertyName, value, true, true, false, null, null);
+		TableIdentifier tableIdentifier = TableIdentifier.create( table );
+		Property p = makeProperty(tableIdentifier, propertyName, value, true, true, false, null, null);
+		revengStrategy.modifyBasicProperty(p, tableIdentifier);
+		return p;
 	}
 
 	private SimpleValue bindColumnToSimpleValue(Table table, Column column, Mapping mapping, boolean generatedIdentifier) {

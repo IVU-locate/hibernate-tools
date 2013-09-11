@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.hibernate.mapping.Column;
 import org.hibernate.mapping.ForeignKey;
 import org.hibernate.mapping.PrimaryKey;
+import org.hibernate.mapping.Property;
 import org.hibernate.mapping.Table;
 import org.hibernate.internal.util.StringHelper;
 
@@ -355,6 +356,15 @@ public class DefaultReverseEngineeringStrategy implements ReverseEngineeringStra
 		return null;
 	}
 
+	public void modifyBasicProperty(Property prop, TableIdentifier table) {
+	}
 	
+	public void modifyPrimaryProperty(Property prop, TableIdentifier table) {
+	}
 	
+	public void modifyCollectionProperty(Property prop, TableIdentifier table) {
+	}
+	
+	public void modifyEntityProperty(Property prop, TableIdentifier table) {
+	}
 }
