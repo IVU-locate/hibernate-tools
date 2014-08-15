@@ -252,6 +252,11 @@ public class EntityPOJOClass extends BasicPOJOClass {
 							//	TODO HA does not support initialValue and allocationSize
 						wholeString.append( builder.getResult() );
 					}
+					else if ( "named".equals( strategy ) ) {
+						builder.resetAnnotation( importType("javax.persistence.GeneratedValue") )
+						    .addQuotedAttribute( "generator", properties.getProperty( "name", null ) );
+						idResult.append(builder.getResult());
+					}
 					else if ( MultipleHiLoPerTableGenerator.class.getName().equals( strategy ) ) {
 						builder.resetAnnotation( importType("javax.persistence.GeneratedValue") )
 						.addAttribute( "strategy", staticImport("javax.persistence.GenerationType", "TABLE" ) )
