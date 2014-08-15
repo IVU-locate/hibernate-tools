@@ -257,6 +257,11 @@ public class EntityPOJOClass extends BasicPOJOClass {
 						    .addQuotedAttribute( "generator", properties.getProperty( "name", null ) );
 						idResult.append(builder.getResult());
 					}
+					else if ( "auto".equals( strategy ) ) {
+						builder.resetAnnotation( importType("javax.persistence.GeneratedValue") );
+						builder.addAttribute( "strategy", staticImport("javax.persistence.GenerationType", "AUTO" ) );
+						idResult.append(builder.getResult());
+					}
 					else if ( MultipleHiLoPerTableGenerator.class.getName().equals( strategy ) ) {
 						builder.resetAnnotation( importType("javax.persistence.GeneratedValue") )
 						.addAttribute( "strategy", staticImport("javax.persistence.GenerationType", "TABLE" ) )
