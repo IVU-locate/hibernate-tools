@@ -699,6 +699,7 @@ public class JDBCReader {
 			Map indexes = new HashMap(); // indexname (String) -> Index
 			Map uniquekeys = new HashMap(); // name (String) -> UniqueKey
 			Map uniqueColumns = new HashMap(); // Column -> List<Index>
+			TableIdentifier ti = TableIdentifier.create(table);
 			
 			Iterator indexIterator = null;
 			try {
@@ -712,6 +713,11 @@ public class JDBCReader {
 					boolean unique = !((Boolean)indexRs.get("NON_UNIQUE")).booleanValue();
 					
 					if (columnName != null || indexName != null) { // both can be non-null with statistical indexs which we don't have any use for.
+						
+						if (revengStrategy.excludeColumn(ti, columnName)) {
+							log.debug("Skip index as column " + ti + "." + columnName + " is excluded by strategy");
+							continue;
+						}
 						
 						if(unique) {
 							UniqueKey key = (UniqueKey) uniquekeys.get(indexName);
